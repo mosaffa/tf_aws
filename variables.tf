@@ -5,7 +5,7 @@ variable "aws_region" {
 
 #------ storage variables
 variable "project_name" {
-
+  type = string
 }
 
 variable "access_key" {
