@@ -1,6 +1,6 @@
 #----root/main.tf-----
 provider "aws" {
-  region = "${var.aws_region}"
+  region     = "${var.aws_region}"
   access_key = "${var.access_key}"
   secret_key = "${var.secret_key}"
 }
@@ -16,17 +16,17 @@ module "networking" {
   source       = "./networking"
   vpc_cidr     = "${var.vpc_cidr}"
   public_cidrs = "${var.public_cidrs}"
-  accessip    = "${var.accessip}"
+  accessip     = "${var.accessip}"
 }
 
 # Deploy Compute Resources
 module "compute" {
-  source          = "./compute"
-  instance_count  = "${var.instance_count}"
-  key_name        = "${var.key_name}"
+  source           = "./compute"
+  instance_count   = "${var.instance_count}"
+  key_name         = "${var.key_name}"
   public_key_mokia = "${var.public_key_mokia}"
-  instance_type   = "${var.server_instance_type}"
-  subnets         = "${module.networking.public_subnets}"
-  security_group  = "${module.networking.public_sg}"
-  subnet_ips      = "${module.networking.subnet_ips}"
+  instance_type    = "${var.server_instance_type}"
+  subnets          = "${module.networking.public_subnets}"
+  security_group   = "${module.networking.public_sg}"
+  subnet_ips       = "${module.networking.subnet_ips}"
 }
